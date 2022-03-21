@@ -11,7 +11,6 @@ public class OperationList {
 
 
     public void addResult(double result) {
-        double current = 0;
         for (int i = history.length - 1; i > 0; i--) {
             history[i] = history[i - 1];
         }

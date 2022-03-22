@@ -4,8 +4,11 @@ public class Main {
         Menu menu = new Menu();
 
         System.out.println("Калькулятор");
-        while (menu.isWorking()){
-            menu.printMenu();
+        while (menu.isUserMenuWorking()){
+            menu.printUserMenu();
+        }
+        while (menu.isCalcMenuWorking()){
+            menu.printCalcMenu();
         }
     }
 }

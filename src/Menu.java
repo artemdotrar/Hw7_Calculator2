@@ -2,11 +2,11 @@ import java.util.Scanner;
 
 public class Menu {
     private final static String ERROR_MESSAGE_1 = "Некорректное значение";
-    private final static int maxUsers = 3;
+    private final static int MAX_USERS = 3;
     private boolean isCalcMenuWorking = true;
     private boolean isUserMenuWorking = true;
     public Calculator calc = new Calculator();
-    public User[] users = new User[maxUsers];
+    public User[] users = new User[MAX_USERS];
     private int countOfUsers = 0;
     private int userLoggonId = -1;
 
@@ -14,7 +14,7 @@ public class Menu {
         int point = inputValidInt("\n1)Регистрация\t2)Авторизация\t3)Список пользователей\n", ERROR_MESSAGE_1);
         switch (point) {
             case 1:
-                if (countOfUsers < maxUsers) {
+                if (countOfUsers < MAX_USERS) {
                     users[countOfUsers] = registration();
                 } else {
                     System.out.println("Превышено максимальное число пользователей");

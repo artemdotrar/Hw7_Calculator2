@@ -18,11 +18,7 @@ public class User {
     }
 
     public boolean isTruePassword(String password) {
-        if (this.password.equals(password)){
-            return true;
-        } else {
-            return false;
-        }
+        return this.password.equals(password) ? true : false;
     }
 
     public boolean authentication(String inputLogin, String inputPassword) {

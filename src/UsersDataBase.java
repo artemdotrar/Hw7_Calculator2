@@ -48,7 +48,8 @@ public class UsersDataBase {
         countOfUsers++;
     }
 
-    public int authorization() { //возвращает индекс юзера в массиве при успешной авторизации или -1
+    //возвращает индекс юзера в массиве при успешной авторизации или -1
+    public int authorization() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите логин: ");
         String login = scanner.nextLine();

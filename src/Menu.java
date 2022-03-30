@@ -58,27 +58,30 @@ public class Menu {
 
     private static double inputValidDouble(String messageInput, String messageError) {
         Scanner scanner = new Scanner(System.in);
+        double result = 0;
         while (true) {
-            System.out.print(messageInput);
-            if (scanner.hasNextDouble()) {
-                return scanner.nextDouble();
-            } else {
+            try {
+                System.out.println(messageInput);
+                result = Double.parseDouble(scanner.nextLine());
+                return result;
+            } catch (Exception e) {
                 System.out.println(messageError);
-                scanner.next();
             }
         }
     }
 
-    private static int inputValidInt(String messageInput, String messageError) {
+    private int inputValidInt(String messageInput, String messageError) {
         Scanner scanner = new Scanner(System.in);
+        int result = 0;
         while (true) {
-            System.out.print(messageInput);
-            if (scanner.hasNextDouble()) {
-                return scanner.nextInt();
-            } else {
+            try {
+                System.out.println(messageInput);
+                result = Integer.parseInt(scanner.nextLine());
+                return result;
+            } catch (Exception e) {
                 System.out.println(messageError);
-                scanner.next();
             }
         }
     }
+
 }

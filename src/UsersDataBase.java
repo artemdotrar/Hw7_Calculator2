@@ -1,7 +1,9 @@
+import java.io.*;
 import java.util.Scanner;
 
 public class UsersDataBase {
-    private final int maxUsers = 3;
+    private final String pathDB = "UserDB.txt";
+    private final int maxUsers = 10;
     private int countOfUsers = 0;
     private User[] users = new User[maxUsers];
 
@@ -18,6 +20,34 @@ public class UsersDataBase {
         return users[id].getName();
     }
 
+    public UsersDataBase() {
+        loadDB();
+    }
+
+    private void loadDB() {
+        try (BufferedReader br = new BufferedReader(new FileReader(pathDB))) {
+            String line;
+            countOfUsers = 0;
+            while ((line = br.readLine()) != null){
+                String[] userLine = line.split(" ");
+                users[countOfUsers] = new User(userLine[0], userLine[1], userLine[2]);
+                countOfUsers++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void saveUser(String login, String name, String password) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(pathDB, true))) {
+            bw.write(login + " " + name + " " + password);
+            bw.newLine();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public void registration() {
         Scanner scanner = new Scanner(System.in);
         String password = "";
@@ -27,7 +57,7 @@ public class UsersDataBase {
         while (true) {
             System.out.println("Введите логин: ");
             boolean isFreeLogin = true;
-            login = scanner.nextLine();
+            login = scanner.nextLine().trim();
             for (int i = 0; i < countOfUsers; i++) {
                 if (login.equals(users[i].getLogin())) {
                     isFreeLogin = false;
@@ -41,10 +71,11 @@ public class UsersDataBase {
             }
         }
         System.out.println("Введите пароль: ");
-        password = scanner.nextLine();
+        password = scanner.nextLine().trim();
         System.out.println("Введите имя пользователя: ");
-        name = scanner.nextLine();
+        name = scanner.nextLine().trim();
         users[countOfUsers] = new User(login, name, password);
+        saveUser(login, name, password);
         countOfUsers++;
     }
 
